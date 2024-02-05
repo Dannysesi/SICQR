@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Profile</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #0e23ab9c; /* Light gray background */
+        }
+
+        .container {
+            text-align: center;
+            background-color: #1ee3d65c; /* White background */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        h2 {
+            color: #1a73e8; /* Blue heading color */
+        }
+
+        p {
+            margin: 5px 0;
+            color: #4a4a4a; /* Dark gray text color */
+        }
+
+        .center-image {
+            display: block;
+            margin: 20px auto;
+            border: 3px solid #1a73e8; /* Blue border for the image */
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>{{ student.name }}</h2>
+        <p>{{ student.matric_no }}</p>
+        <p>{{ student.department }}</p>
+        <h2>Contact Details</h2>
+        <p>{{ student.email }}</p>
+        <p>{{ student.phone }}</p>
+        <p>{{ student.home_address }}</p>
+        {% if student.image %}
+            <img src="{{ student.image.url }}" alt="QR Code" width="200" height="200" class="center-image">
+        {% else %}
+            <p>No image available</p>
+        {% endif %}
+    </div>
+</body>
+</html>
