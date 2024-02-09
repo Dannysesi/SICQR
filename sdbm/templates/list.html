@@ -1,17 +1,17 @@
-<!-- sdbm/templates/sdbm/list.html -->
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Student List</title>
-</head>
-<body>
-    <h1>Student List</h1>
-    
-    <ul>
-        {% for student in students %}
-            <li>{{ student.name }}</li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% block title %}
+    Student List
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Student List</h1>
+        
+        <ul style="list-style: none;">
+            {% for student in students %}
+                <li><a href="{% url 'student_detail' student.id %}" class="student-link">{{ student.first_name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

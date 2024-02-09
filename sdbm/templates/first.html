@@ -1,58 +1,96 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Profile</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #0e23ab9c; /* Light gray background */
-        }
-
-        .container {
-            text-align: center;
-            background-color: #1ee3d65c; /* White background */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-        }
-
-        h2 {
-            color: #1a73e8; /* Blue heading color */
-        }
-
-        p {
-            margin: 5px 0;
-            color: #4a4a4a; /* Dark gray text color */
-        }
-
-        .center-image {
-            display: block;
-            margin: 20px auto;
-            border: 3px solid #1a73e8; /* Blue border for the image */
-            border-radius: 5px;
-        }
-    </style>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
     <div class="container">
-        <h2>{{ student.name }}</h2>
-        <p>{{ student.matric_no }}</p>
-        <p>{{ student.department }}</p>
-        <h2>Contact Details</h2>
-        <p>{{ student.email }}</p>
-        <p>{{ student.phone }}</p>
-        <p>{{ student.home_address }}</p>
-        {% if student.image %}
-            <img src="{{ student.image.url }}" alt="QR Code" width="200" height="200" class="center-image">
-        {% else %}
-            <p>No image available</p>
-        {% endif %}
+        <div class="info-section">
+            <h2>Personal Information</h2>
+            <p>Full Name: {{ student.last_name|capfirst }} {{ student.first_name|capfirst }} {{ student.other_name|capfirst }}</p>
+            <p>Date of Birth: {{ student.date_of_birth|capfirst }}</p>
+            <p>State of origin: {{ student.state_of_origin|capfirst }} State</p>
+            <p>Matric number: {{ student.matric_no|capfirst }}</p>
+            <p>Department: {{ student.department|capfirst }}</p>
+        </div>
+
+        <div class="info-section">
+            <h2>Contact Details</h2>
+            <p>Email: {{ student.email }}</p>
+            <p>Phone no: {{ student.phone }}</p>
+            <p>Home Address: {{ student.home_address|capfirst }}</p>
+            <p>Emergency Contact Name: {{ student.emeConName|capfirst }}</p>
+            <p>Emergency Contact Phone no: {{ student.emeconphone|capfirst }}</p>
+        </div>
+
+        <div class="info-section">
+            <h2>Guardian Details</h2>
+            <p>Guardian Name: {{ student.guardian_name|capfirst }}</p>
+            <p>Relationship_to Student: {{ student.relationship_to_student|capfirst }}</p>
+            <p>Guardian Email: {{ student.guardian_email }}</p>
+            <p>Guardian Phone no: {{ student.guardian_phone|capfirst }}</p>
+            <p>Guardian Address: {{ student.guardian_add|capfirst }}</p>
+        </div>
+
+        <div class="info-section">
+            <h2>Next of kin Details</h2>
+            <p>Next of Kin Name:{{ student.next_of_kin_name|capfirst }}</p>
+            <p>Relationship: {{ student.relationship|capfirst }}</p>
+            <p>Next of Kin Email: {{ student.next_of_kin_email }}</p>
+            <p>Next of Kin Phone no: {{ student.next_of_kin_phone }}</p>
+            <p>Next of Kin Address: {{ student.next_of_kin_address|capfirst }}</p>
+        </div>
+
+        <div class="info-section">
+            <h2>Medical Information</h2>
+            <p>Medical Condition: {{ student.medical_condition|capfirst }}</p>
+            <p>If not Healthy state health issue: {{ student.if_not_healthy|capfirst }}</p>
+        </div>
+
+        <div class="info-section">
+            <h2>Other Details</h2>
+            <p>Level: {{ student.level }} Level</p>
+            <p>Enrollment Date: {{ student.enrollment_date }}</p>
+            <p>Graduation Date: {{ student.graduation_date }}</p>
+            <p>Status: {{ student.status|capfirst }}</p>
+        </div>
     </div>
-</body>
-</html>
+
+    <!-- {% if student.image %}
+        <img src="{{ student.image.url }}" alt="QR Code" class="center-image">
+    {% else %}
+        <p>No image available</p>
+    {% endif %} -->
+
+<style>
+    /* body {
+        background-color: #333;
+    } */
+
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        background-color: #33333350;
+        padding: 30px;
+        padding-left: 65px;
+        padding-top: 50px;
+        border-radius: 10px;
+    }
+
+    .info-section {
+        flex: 1 1 300px; /* Adjust the width as needed */
+        margin-right: 40px;
+        margin-bottom: 40px;
+        padding: 15px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 10px 10px 10px 4px rgba(0, 0, 0, 0.426);
+    }
+
+    .info-section h2 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .info-section p {
+        margin: 5px 0;
+    }
+</style>
+
+{% endblock %}
