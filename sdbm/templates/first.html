@@ -1,8 +1,18 @@
 {% extends 'base.html' %}
+
 {% block title %}
     <title>Student Details</title> 
-{% endblock %}
+{% endblock title %}
+
 {% block content %}
+<div style="text-align: center; align-items: center; background-color: #33333350;padding: 30px; width: 50%; margin: 50px auto;border-radius: 10px;">
+    <div>
+        <img src="/media/qr_codes/{{ student.id }}.png" alt="trial one" width="300" height="200">
+    </div>
+    <div>
+        <a id="download_button" href="/media/qr_codes/{{ student.id }}.png" download="qr_code.png">Download QR Code</a>
+    </div>
+</div>
     <div class="container">
         <div class="info-section">
             <h2>Personal Information</h2>
@@ -55,16 +65,14 @@
         </div>
     </div>
 
-    <!-- {% if student.image %}
-        <img src="{{ student.image.url }}" alt="QR Code" class="center-image">
-    {% else %}
-        <p>No image available</p>
-    {% endif %} -->
-
 <style>
-    /* body {
-        background-color: #333;
-    } */
+    header {
+        background-image: linear-gradient(rgba(4,9,30,0.7), rgba(4,9,30,0.7)),
+            url('media/oui.jpeg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
+    }
 
     .container {
         display: flex;
@@ -77,7 +85,7 @@
     }
 
     .info-section {
-        flex: 1 1 300px; /* Adjust the width as needed */
+        flex: 1 1 300px;
         margin-right: 40px;
         margin-bottom: 40px;
         padding: 15px;
@@ -93,6 +101,21 @@
 
     .info-section p {
         margin: 5px 0;
+    }
+
+    #download_button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        margin-top: 10px; /* Adjust the margin as needed */
+    }
+
+    #download_button:hover {
+        background-color: #0056b3;
     }
 </style>
 
