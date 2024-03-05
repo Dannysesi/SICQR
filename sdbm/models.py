@@ -107,7 +107,7 @@ class Student(models.Model):
             box_size=10,
             border=4,
         )
-        qr.add_data(f"http://192.168.98.62:3030/student_detail/{self.id}/")
+        qr.add_data(f"http://192.168.101.62:3030/student_detail/{self.id}/")
         qr.make(fit=True)
 
         # Ensure 'media/qr_codes' directory exists
