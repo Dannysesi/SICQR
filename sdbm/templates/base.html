@@ -3,158 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% block title %} <title>SICQR - Student Identification System </title>{% endblock %}
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        html, body {
+            height: 100%;
             margin: 0;
-            padding: 0;
-            background: #ffffffc4;
+            display: flex;
+            flex-direction: column;
         }
-
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .container-flex {
+            flex: 1;
         }
-        header {
-            background-image: linear-gradient(rgba(4,9,30,0.7), rgba(4,9,30,0.7)),
-                url('media/oui.jpeg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            position: relative;
-        }
-
-        h1 {
-            color: #333;
+        footer {
+            background-color: #071952;
+            color: #ffffff;
             text-align: center;
-            margin-bottom: 30px;
+            padding-top: 20px;
         }
-
-        .btn {
+        .typewriter {
             display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            overflow: hidden;
+            white-space: nowrap;
+            border-right: .15em solid orange;
+            animation: typing 6s steps(60, end), blink-caret .75s step-end infinite;
+            font-size: 1.5em;
+            width: 100%;
+            max-width: 100%;
+            /* margin-left: 130px;
+            margin-right: -100px; */
         }
-
-        .btn:hover {
-            background-color: #0056b3;
+        .typewriter h1 {
+            display: inline;
+            margin: 0;
         }
-
-        .btn + .btn {
-            margin-left: 10px;
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 50em; } /* Ensure enough width for the full text */
         }
-
-        a {
-            color: #007bff;
-            text-decoration: none;
-            transition: color 0.3s ease;
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: orange; }
         }
-
-        a:hover {
-            color: #0056b3;
+        @media (max-width: 768px) {
+            .typewriter {
+                font-size: 1.5em;
+                margin-left: 20px;
+                margin-right: 20px;
+                white-space: normal;
+                width: auto;
+            }
+            .typewriter h1 {
+                font-size: 1em;
+            }
         }
-
-        .student-link {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            margin-bottom: 10px;
-        }
-
-        .student-link:hover {
-            background-color: #0056b3;
-        }
-
-        .info-section {
-            flex: 1 1 300px; /* Adjust the width as needed */
-            margin-right: 40px;
-            margin-bottom: 40px;
-            padding: 15px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 10px 10px 10px 4px rgba(0, 0, 0, 0.426);
-        }
-
-        .info-section h2 {
-            color: #333;
-            margin-bottom: 10px;
-        }
-
-        .info-section p {
-            margin: 5px 0;
-        }
-
-
     </style>
+    {% block title %}<title>SICQR - Student Identification System</title>{% endblock %}
 </head>
 <body>
-    <header style="text-align: center; height:100vh">
-        <img src="media/oui.jpeg" alt="oui logo" width="300" height="200" style="margin-top: 30px;">
-        <h1 style="color: #ffffffc4;font-family: 'Courier New', Courier, monospace;font-size: 70px;">ODUDUWA UNIVERSITY IPETUMODU</h1>
-        <P style="color: #ffffffc4;font-family: 'Courier New', Courier, monospace;font-size: 40px;">P.M.B 5533, ILE-IFE, STATE OF OSUN</P>
-        <div style="background-color:rgba(222, 184, 135, 0.43); padding: 20px; width: 500px; border-radius: 30px;" class="container">
-            <a href="{% url 'home' %}" class="btn">Home</a>
-            <a href="#" class="btn">About</a>
-            <a href="{% url 'student_list' %}" class="btn">Students</a>
-            <a href="{% url 'admin:index' %}" class="btn">Admin portal</a>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #071952;">
+        <a class="navbar-brand" href="{% url 'home' %}">SICQR</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#aboutModal">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'student_list' %}">Students</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'admin:index' %}">Admin Portal</a>
+                </li>
+            </ul>
         </div>
-        <h1 style="color: #ffffffc4;font-family:cursive;font-size: 30px;">Student Identification System</h1>
-        <p style="color: #ffffffc4;font-family:cursive;font-size: 20px;">Utilizing QR code technology</p>
-    </header>
-    {% block content %}
-    <section  style="height: 80vh; background-image: url(media/samp1.jpeg); background-repeat: no-repeat;background-size: cover;display: flex; justify-content: center; align-items: center;">
-        <div style="border-radius: 20px;padding: 20px;max-width: 800px;background-color: #fff; text-align: center;box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
-            <p style="color: #101010c4;font-family: 'Courier New', Courier, monospace;font-size: 70px;">Secure Your Student Data With QR codes</p>
+    </nav>
+
+    <!-- Main Content -->
+    
+    <div class="container container-flex mt-4">
+        <div class="typewriter">
+            <h1>Welcome to SICQR: Streamlining Student Identification with QR Codes</h1>
         </div>
-    </section>
-    <div>
-        <marquee behavior="scroll" direction="left" style="background-color: blanchedalmond;font-size: 30px;padding: 20px;color: brown;">Tap. Identify. Access. Introducing the future of student IDs, powered by secure QR code technology</marquee>
+        {% block content %}
+        {% endblock %}
     </div>
-    <div style="margin: 50px;">
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vitae quia est deleniti, exercitationem quasi cumque reiciendis excepturi labore quod repellat, voluptatibus quaerat quo sint quisquam dolor sed veritatis! Illo assumenda beatae accusamus suscipit natus cumque eos. Dicta inventore consectetur veniam, aliquid consequuntur ad quod deleniti et distinctio accusantium, excepturi placeat nostrum in quam sunt culpa. Obcaecati, fuga accusantium modi tenetur quam optio ducimus impedit consequatur nisi alias, voluptas repudiandae error recusandae veritatis, blanditiis ad perferendis accusamus. Neque dolorum commodi debitis iusto, dolores, nam, ex corporis necessitatibus accusantium pariatur tenetur excepturi optio mollitia molestiae sit voluptatum animi magnam. Hic soluta nesciunt vero iste esse non, temporibus perferendis, natus maiores, dignissimos veniam exercitationem cum excepturi obcaecati enim repellendus similique saepe sed labore dolorum aut tempora consequuntur. Alias voluptatibus voluptatum dolor, pariatur blanditiis eum mollitia quia hic in ratione sunt, suscipit accusantium sequi quae perspiciatis quo ipsum. Maxime quasi iusto a distinctio voluptatibus. Praesentium, odit? Odio quo, velit sed maiores suscipit quidem provident perspiciatis consequatur! Dolore culpa, perferendis, quam optio laboriosam repellat officia nulla suscipit quo ratione molestias? Provident sit rem dolorum voluptatem officia beatae ab voluptates quibusdam aliquid, consequatur veritatis deleniti eveniet et ipsam accusantium ea, a facilis! Autem atque mollitia consequatur nobis incidunt, cumque nemo exercitationem? Delectus laboriosam nobis aut. Ipsum labore nulla tempora natus? Laborum quos molestias non! Nemo doloremque necessitatibus placeat, impedit dolorum quia dolor facere enim quidem doloribus cum earum vitae, possimus quibusdam fugiat. Illum aliquam excepturi a! Ducimus, consequuntur unde, ipsa quae quisquam quaerat inventore ea itaque cum eligendi dicta illo doloremque voluptate cupiditate eaque laborum sapiente placeat explicabo earum? Ab veritatis asperiores veniam libero, eveniet explicabo voluptatem quis quas quasi vitae, minima praesentium ea ipsum dignissimos dicta debitis repellat, neque dolore. Doloremque quasi voluptatibus et corrupti voluptatum ipsam laboriosam reiciendis, earum vitae in ex itaque, eligendi debitis omnis ut ad amet dolorem? Eligendi laboriosam est labore ullam, deleniti ad a eaque fuga veniam impedit tempore veritatis ipsa vitae magni harum minus nesciunt eveniet commodi, accusamus voluptate? Sequi dicta commodi possimus omnis ab ea hic laborum eligendi quos in, illum animi soluta, eos ducimus velit sit enim! Voluptatem quibusdam asperiores repudiandae, perspiciatis deserunt possimus eligendi temporibus quas? Ipsum soluta accusantium sint, sequi, autem inventore corrupti distinctio harum reiciendis quam ut expedita odit consequatur quo facere necessitatibus provident pariatur eaque veritatis aspernatur nobis est quae. Sequi illo autem commodi saepe numquam quos inventore impedit cupiditate ullam voluptatum facilis sapiente quod, iusto, nostrum vero dignissimos veritatis ea dolorem alias eveniet enim, corrupti quibusdam. Magni, nemo corporis molestias totam libero sit iure dignissimos, exercitationem sunt rerum vel? Aliquam consectetur eaque tempora esse hic mollitia odio inventore ratione fugit libero, laboriosam cupiditate quasi! Nostrum maiores quam culpa doloremque commodi qui distinctio delectus voluptatem impedit sapiente, modi at unde ad expedita nesciunt dolores architecto similique explicabo quasi aperiam? Facere modi vero repellat placeat dolor delectus pariatur ducimus reprehenderit provident consequuntur laborum expedita officiis voluptas numquam quia neque odio quidem suscipit, voluptatum exercitationem? Eos tenetur voluptas earum sunt ipsam molestiae aperiam eveniet minus!</p>
-    </div>
-    {% endblock %}
+
+    <!-- Footer -->
     <footer>
-        <div style="background-color:rgba(0, 191, 255, 0.114); height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <h1 style="font-size: 40px; font-family: cursive; border:#fff; border-radius: 20px;background-color: #fff;padding: 10px;">Get in touch</h1>
-            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-                <div style="border: 1px solid #ccc; padding: 20px; background-color: #fff; border-radius: 10px; max-width: 300px;">
-                    <h2 style="margin-bottom: 10px;">Phone</h2>
-                    <p style="margin-bottom: 0;">+2349025629246</p>
-                </div>
-                <div style="border: 1px solid #ccc; padding: 20px; background-color: #fff; border-radius: 10px; max-width: 300px;">
-                    <h2 style="margin-bottom: 10px;">Email</h2>
-                    <p style="margin-bottom: 0;">info@leinad.com</p>
-                </div>
-                <div style="border: 1px solid #ccc; padding: 20px; background-color: #fff; border-radius: 10px; max-width: 300px;">
-                    <h2 style="margin-bottom: 10px;">Address</h2>
-                    <p style="margin-bottom: 0;">Emerald Garden Estate</p>
-                </div>
-                <div style="border: 1px solid #ccc; padding: 20px; background-color: #fff; border-radius: 10px; max-width: 300px;">
-                    <h2 style="margin-bottom: 10px;">Working Hours</h2>
-                    <p style="margin-bottom: 0;">Mon-Fri (9am-5pm)</p>
-                </div>
-            </div>
-        </div>        
-        <div style="height: 20vh; background-color: black;color: #007bff;text-align: center;padding-top: 70px;">
-            <div>
-                <p style="font-size: 18px;">Crafted with passion by</p>
-                <h2 style="font-size: 24px; margin: 5px 0; font-family: cursive;">Leinad the Tech_Villain</h2>
-                <p style="font-size: 16px;">© 2024. All rights reserved.</p>
-            </div>
+        <div class="container p-4">
+            <p class="mb-1">Crafted with passion by</p>
+            <h2 class="mb-1" style="font-family: cursive;">Leinad the Tech_Villain</h2>
+            <p class="mb-0">© 2024. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- About Modal -->
+    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="aboutModalLabel">About SICQR</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>SICQR is a comprehensive student identification system utilizing QR codes for efficient and secure management of student data and campus activities.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
