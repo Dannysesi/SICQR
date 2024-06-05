@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,10 +28,8 @@
             border-right: .15em solid orange;
             animation: typing 6s steps(60, end), blink-caret .75s step-end infinite;
             font-size: 1.5em;
-            width: 100%;
-            max-width: 100%;
-            /* margin-left: 130px;
-            margin-right: -100px; */
+            width: 150%;
+            max-width: 150%;
         }
         .typewriter h1 {
             display: inline;
@@ -38,7 +37,7 @@
         }
         @keyframes typing {
             from { width: 0; }
-            to { width: 50em; } /* Ensure enough width for the full text */
+            to { width: 50em; }
         }
         @keyframes blink-caret {
             from, to { border-color: transparent; }
@@ -56,6 +55,28 @@
                 font-size: 1em;
             }
         }
+
+        .responsive-image {
+            width: 100%;
+            height: auto;
+        }
+
+        @media (min-width: 768px) {
+            /* Styles for laptops and larger screens */
+            .responsive-image {
+                max-width: 100%; 
+                margin: 0 auto;
+                display: block;
+            }
+        }
+
+        @media (max-width: 767px) {
+            /* Styles for mobile devices */
+            .responsive-image {
+                max-width: 100%;
+            }
+        }
+
     </style>
     {% block title %}<title>SICQR - Student Identification System</title>{% endblock %}
 </head>
@@ -85,12 +106,12 @@
     </nav>
 
     <!-- Main Content -->
-    
+    <!-- <div class="typewriter">
+        <h1>Welcome to SICQR: Streamlining Student Identification with QR Codes</h1>
+    </div> -->
     <div class="container container-flex mt-4">
-        <div class="typewriter">
-            <h1>Welcome to SICQR: Streamlining Student Identification with QR Codes</h1>
-        </div>
         {% block content %}
+        <img src="{% static 'images\qrcodesystemdesign.png' %}" alt="Description of image" class="responsive-image">
         {% endblock %}
     </div>
 
@@ -129,3 +150,4 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
