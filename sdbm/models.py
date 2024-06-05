@@ -6,6 +6,7 @@ import uuid
 from io import BytesIO
 from django.core.files import File
 from datetime import date
+from django.conf import settings
 
 class Student(models.Model):
     state = (
@@ -107,7 +108,10 @@ class Student(models.Model):
             box_size=10,
             border=4,
         )
-        qr.add_data(f"http://192.168.101.62:3030/student_detail/{self.id}/")
+
+        allowed_hosts = settings.ALLOWED_HOSTS[0]
+
+        qr.add_data(f"{allowed_hosts}/student_detail/{self.id}/")
         qr.make(fit=True)
 
         # Ensure 'media/qr_codes' directory exists
