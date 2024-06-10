@@ -20,6 +20,7 @@
             color: #ffffff;
             text-align: center;
             padding-top: 20px;
+            margin-top: 30px;
         }
         .typewriter {
             display: inline-block;
@@ -27,9 +28,10 @@
             white-space: nowrap;
             border-right: .15em solid orange;
             animation: typing 6s steps(60, end), blink-caret .75s step-end infinite;
-            font-size: 1.5em;
+            font-size: 3em;
             width: 150%;
             max-width: 150%;
+            /* text-align: center; */
         }
         .typewriter h1 {
             display: inline;
@@ -37,11 +39,11 @@
         }
         @keyframes typing {
             from { width: 0; }
-            to { width: 50em; }
+            to { width: 11em; }
         }
         @keyframes blink-caret {
             from, to { border-color: transparent; }
-            50% { border-color: orange; }
+            50% { border-color: #07195273; }
         }
         @media (max-width: 768px) {
             .typewriter {
@@ -76,6 +78,12 @@
                 max-width: 100%;
             }
         }
+        .content-section {
+            /* margin-bottom: 20px; */
+            background-color: #07195273;
+            padding: 15px;
+            border-radius: 10px;
+        }
 
     </style>
     {% block title %}<title>SICQR - Student Identification System</title>{% endblock %}
@@ -99,8 +107,13 @@
                     <a class="nav-link" href="{% url 'student_list' %}">Students</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'admin:index' %}">Admin Portal</a>
+                    <a class="nav-link" href="{% url 'add_student' %}">Add Student</a>
                 </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
@@ -111,9 +124,26 @@
     </div> -->
     <div class="container container-flex mt-4">
         {% block content %}
+        <div class="content-section">
+            <h2 class="typewriter">Overview of the System</h2>
+            <p>The diagram illustrates a typical web application architecture that handles requests involving QR codes and student information. This architecture integrates multiple components, from receiving a web request to interacting with databases and serving media files.</p>
+        </div>
         <img src="{% static 'images\qrcodesystemdesign.png' %}" alt="Description of image" class="responsive-image">
+
+            <div class="content-section">
+                <h2 class="section-title">How the System Works Together</h2>
+                <p><strong>User Interaction</strong>: A user scans a QR code or accesses a student’s profile through a URL. The web server receives this request and forwards it to the WSGI server.</p>
+                <p><strong>Request Handling</strong>: The WSGI server passes the request to the Django application, where `urls.py` determines which view to invoke based on the URL pattern.</p>
+                <p><strong>View Processing</strong>: The selected view in `views.py` processes the request. It may interact with the `models.py` to fetch or update data from the PostgreSQL database.</p>
+                <p><strong>Data and Template Rendering</strong>: The view function may compile the data into a context that is passed to a template. The template renders the final HTML page using the provided context data.</p>
+                <p><strong>Response Delivery</strong>: The generated HTML or media content is sent back through the WSGI server to the web server. The web server returns the content to the user’s browser, completing the request-response cycle.</p>
+            </div>
+        </div>
         {% endblock %}
     </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
 
     <!-- Footer -->
     <footer>

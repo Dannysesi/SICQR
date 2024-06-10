@@ -5,14 +5,32 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h1>Student List</h1>
-        <h1>List of Students</h1>
-        
-        <ul style="list-style: none;">
-            {% for student in students %}
-                <li><a href="{% url 'student_detail' student.id %}" class="student-link">{{ student.first_name }}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
+<div class="container my-5">
+    <h1 class="mb-4 text-center">List of Students</h1>
+    
+    <ul class="list-group">
+        {% for student in students %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{% url 'student_detail' student.id %}" class="student-link">{{ student.first_name }} {{ student.last_name }}</a>
+                <span class="badge bg-primary rounded-pill">{{ student.matric_no }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<style>
+    .student-link {
+        text-decoration: none;
+        color: #333;
+        transition: color 0.3s;
+    }
+    .student-link:hover {
+        color: #007bff;
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
 {% endblock %}
+
