@@ -17,13 +17,13 @@ def student_detail(request, id):
 
 @login_required(login_url='/login')
 def add_student(request):
-    student = Student.objects.all()
+    # student = get_object_or_404(Student, id=id)
     if request.method =='POST':
         form = StudentAddForm(request.POST)
         if form.is_valid():
             student = form.save(commit=False)
             student.save()
-            return redirect('student_detail/')
+            return redirect('student_detail', id=student.id)
     else:
         form = StudentAddForm()
 
