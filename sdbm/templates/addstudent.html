@@ -5,8 +5,12 @@
 {% endblock %}
 {% load crispy_forms_tags %}
 {% block content %}
-    {% csrf_token %}
-    <form action="Post">
-        {{ form|crispy }}
-    </form>
+    <div class="container mt-4">
+        <h2>Add Student</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary mt-3">Add Student</button>
+        </form>
+    </div>
 {% endblock %}
